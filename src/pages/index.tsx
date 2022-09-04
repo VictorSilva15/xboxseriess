@@ -6,10 +6,127 @@ import Link from "next/link";
 
 import { Header } from "../components/Header";
 import { Section } from "../components/Section";
-
 import { Plus, WhatsappLogo } from "phosphor-react";
 
+import { SpecificationProps } from "../types/accordion";
+
+import Card from "../components/Card";
+import Accordion from "../components/Accordion";
+
 const Home: NextPage = () => {
+  const specifications: SpecificationProps[] = [
+    // Processador
+    {
+      title: "Processador",
+      children: (
+        <div className="flex flex-col items-start justify-start gap-6">
+          <Card
+            title="CPU."
+            description="CPU Zen 2 personalizada de 8X Cores @ 3,6 GHz (3,4 GHz com SMT)."
+          />
+          <Card title="SOC Die Size." description="197,05 mm²." />
+          <Card
+            title="GPU."
+            description="GPU RDNA 2 personalizado de 4 TFLOPS, 20 CUs @1.565 GHz."
+          />
+        </div>
+      ),
+    },
+    // Memória e Armazenamento
+    {
+      title: "Memória e Armazenamento",
+      children: (
+        <div className="flex flex-col items-start justify-start gap-6">
+          <Card
+            title="Memória."
+            description="GDDR6 de 10 GB e barramento de 128 bits."
+          />
+          <Card
+            title="Taxa de transferência de E/S."
+            description="2,4 GB/s (Raw), 4,8 GB/s (compactado, com bloco de descompressão de hardware personalizado)."
+          />
+          <Card
+            title="Largura de banda de memória."
+            description="8GB a 224 GB/s, 2GB a 56 GB/s."
+          />
+          <Card
+            title="Armazenamento expansível."
+            description="O suporte para o cartão de expansão Seagate de 1 TB para Xbox Series X|S corresponde exatamente ao armazenamento interno (vendido separadamente). Suporte para HDD externo USB 3.1 (vendido separadamente)."
+          />
+          <Card
+            title="Largura de banda de memória."
+            description="8GB a 224 GB/s, 2GB a 56 GB/s."
+          />
+
+          <Card
+            title="Armazenamento interno."
+            description="SSD NVME personalizado de 512 GB."
+          />
+        </div>
+      ),
+    },
+    // Recursos de Vídeo
+    {
+      title: "Recursos de Vídeo",
+      children: (
+        <div className="flex flex-col items-start justify-start gap-6">
+          <Card title="Resolução de jogos." description="1440p." />
+          <Card
+            title="Recursos HDMI."
+            description="Modo automático de baixa latência. Taxa de atualização variável HDMI. AMD FreeSync."
+          />
+          <Card title="Meta de desempenho." description="Até 120 FPS." />
+        </div>
+      ),
+    },
+    // Capacidade de Som
+    {
+      title: "Capacidades de Som",
+      children: (
+        <div className="flex flex-col items-start justify-start gap-6">
+          <ul className="list-disc ml-6 py-4 text-md font-serif">
+            <li>L-PCM, até 7.1</li>
+            <li>DTS 5.1</li>
+            <li>Dolby Digital 5.1</li>
+            <li>Dolby TrueHD com Atmos</li>
+          </ul>
+        </div>
+      ),
+    },
+    // Portas e Conectividade
+    {
+      title: "Portas e Conectividade",
+      children: (
+        <div className="flex flex-col items-start justify-start gap-6">
+          <Card title="HDMI." description="porta HDMI 2.1." />
+          <Card title="Ethernet." description="802.3 10/100/1000." />
+          <Card title="USB." description="portas USB 3.1 Gen 1." />
+          <Card
+            title="Opções de acessórios."
+            description="Rádio sem fio Xbox de banda dupla dedicado."
+          />
+          <Card title="Sem fio." description="anda dupla 802.11ac." />
+        </div>
+      ),
+    },
+    // Design
+    {
+      title: "Design",
+      children: (
+        <div className="flex flex-col items-start justify-start gap-6">
+          <Image
+            src="/assets/images/xboxseriess-lying.png"
+            alt="Xbox Series S Dimensions frame"
+            width={400}
+            height={180}
+          />
+          <Card title="Dimensões." description="6,5 cm x 15,1 cm x 27,5cm" />
+          <Card title="Peso." description="1,93 kg" />
+        </div>
+      ),
+    },
+  ];
+
   return (
     <>
       {/* Head configuration */}
@@ -68,7 +185,7 @@ const Home: NextPage = () => {
           <div className="w-full relative -top-5 right-0">
             <div className="w-full text-center relative top-20 z-50">
               <Image
-                src="/assets/teste.png"
+                src="/assets/images/xboxseriess.png"
                 alt="Console Xbox Series S"
                 width={300}
                 height={400}
@@ -84,13 +201,32 @@ const Home: NextPage = () => {
             </div>
           </div>
         </Section>
-        <Section id="specifications">
-          <h1 className="text-black font-header text-4xl w-full">
-            Especificações
-          </h1>
+
+        <Section id="specifications" className="flex flex-col gap-8 relative">
+          {/* Title and design */}
+          <div className="h-min">
+            <h1 className="text-black font-header text-4xl w-full">
+              Especificações
+            </h1>
+            <div className="relative -left-10">
+              <Image
+                src="/assets/images/xboxseriess-half-controller.png"
+                alt="Xbox Series S Controller"
+                width={380}
+                height={320}
+              />
+            </div>
+          </div>
+          {/* Specifications */}
+          <div className="h-min">
+            <Accordion items={specifications} />
+          </div>
         </Section>
+
         <Section id="images">
-          <h1 className="text-black font-header text-4xl w-full">Imagens</h1>
+          <h1 className="text-black font-header text-4xl w-full mb-5">
+            Imagens
+          </h1>
         </Section>
         <Section id="videos">
           <h1 className="text-black font-header text-4xl w-full">Vídeos</h1>

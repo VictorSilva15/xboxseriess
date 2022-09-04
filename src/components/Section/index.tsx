@@ -11,7 +11,7 @@ const Section = ({ id, children, className }: SectionProps) => {
 
   return (
     <section
-      className={`w-full min-h-screen bg-white-default px-5 py-2 mb-[2rem] ${aditionalStyle}`}
+      className={`w-full h-auto bg-white-default px-5 py-2 mb-[2rem] ${aditionalStyle}`}
       id={id}
     >
       {children}
