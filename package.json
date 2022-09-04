@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "3d-react-carousal": "^5.0.0",
     "@headlessui/react": "^1.6.6",
     "next": "12.2.5",
     "phosphor-react": "^1.4.1",
