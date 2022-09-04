@@ -26,7 +26,7 @@ module.exports = {
     fontFamily: {
       header: ["Anton", "sans-serif"],
       sans: ["Roboto", "sans-serif"],
-      serif: ["Merriweather", "serif"],
+      serif: ["Arvo", "serif"],
     },
     extend: {},
   },
