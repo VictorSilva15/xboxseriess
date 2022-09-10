@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-css-tags */
 /* eslint-disable @next/next/no-img-element */
 import type { NextPage } from "next";
 
@@ -13,6 +14,7 @@ import { SpecificationProps } from "../types/accordion";
 
 import Card from "../components/Card";
 import Accordion from "../components/Accordion";
+import Carousel from "../components/Carousel";
 
 const Home: NextPage = () => {
   const specifications: SpecificationProps[] = [
@@ -128,45 +130,81 @@ const Home: NextPage = () => {
     },
   ];
 
-  const images = [
+  const imageGames = [
     {
-      url: "/assets/images/xboxseriess-controller.jpeg",
-      caption: "Xbox Series S Controller",
+      url: "/assets/images/assassinsCreedSyndicate.png",
+      label: "Assassin's Creed Syndicate",
     },
     {
-      url: "/assets/images/xboxseriess-on2.jpeg",
-      caption: "Xbox Series S Ligado",
+      url: "/assets/images/battlefield2042.png",
+      label: "Battlefield 2042",
     },
     {
-      url: "/assets/images/xboxseriess-installing-games.jpeg",
-      caption: "Xbox Series S instalando Jogos",
+      url: "/assets/images/dragonBallFighters.png",
+      label: "Dragon ball Fighters",
     },
     {
-      url: "/assets/images/xboxseriess-gamepass.jpeg",
-      caption: "Game Pass",
+      url: "/assets/images/fallGuys.png",
+      label: "Fall Guys",
+    },
+    {
+      url: "/assets/images/fortnite.png",
+      label: "Fortnite",
+    },
+    {
+      url: "/assets/images/forzaHorizon5.png",
+      label: "Forza Horizon 5",
+    },
+    {
+      url: "/assets/images/hitman.png",
+      label: "Hitman 3",
+    },
+    {
+      url: "/assets/images/minecraftDungeons.png",
+      label: "minecraft Dungeons",
+    },
+    {
+      url: "/assets/images/ori.png",
+      label: "ori",
     },
     {
       url: "/assets/images/starWars.png",
-      caption: "Star Wars",
-    },
-    {
-      url: "/assets/images/assassinsCreedSyndicate.png",
-      caption: "Assassin's Creed Syndicate",
+      label: "Start Wars",
     },
   ];
 
   const videos = [
     {
-      url: "https://streamable.com/e/52ug6j?loop=0",
+      url: "https://streamable.com/e/lzluig?loop=0",
       title: "Forza Horizon 5",
     },
     {
-      url: "https://streamable.com/e/iu9ygy?loop=0",
-      title: "Forza Horizon 5",
+      url: "https://streamable.com/e/9jhb96?loop=0",
+      title: "fall Guys",
     },
     {
-      url: "https://streamable.com/e/u1qqiy?loop=0",
+      url: "https://streamable.com/e/xcov99?loop=0",
       title: "Fortnite",
+    },
+    {
+      url: "https://streamable.com/e/8wtqs7?loop=0",
+      title: "Minecraft Dungeons",
+    },
+    {
+      url: "https://streamable.com/e/acqkgc?loop=0",
+      title: "Ori",
+    },
+    {
+      url: "https://streamable.com/e/0fetil?loop=0",
+      title: "Hitman",
+    },
+    {
+      url: "https://streamable.com/e/nwlmgx?loop=0",
+      title: "Dragon Ball fighters",
+    },
+    {
+      url: "https://streamable.com/e/uqcnmt?loop=0",
+      title: "The Crew 2",
     },
     {
       url: "https://streamable.com/e/visxr4?loop=0",
@@ -275,23 +313,7 @@ const Home: NextPage = () => {
             Imagens
           </h1>
 
-          {images.map((image) => {
-            return (
-              <div
-                className="w-full lg:w-[400px] float-left m-2 relative top-0 left-0"
-                key={image.caption}
-              >
-                <h3 className="font-header texy-black my-4">{image.caption}</h3>
-                <div className="w-full relative ">
-                  <img
-                    src={image.url}
-                    alt={image.caption}
-                    className="w-full h-auto"
-                  />
-                </div>
-              </div>
-            );
-          })}
+          <Carousel images={imageGames} />
         </Section>
 
         <Section

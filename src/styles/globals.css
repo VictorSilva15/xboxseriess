@@ -6,6 +6,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -26,5 +31,5 @@ h6 {
 #images,
 #videos,
 #contact {
-  scroll-margin-top: 100px;
+  scroll-margin-top: 110px;
 }

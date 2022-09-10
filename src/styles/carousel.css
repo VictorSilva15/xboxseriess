@@ -1,0 +1,33 @@
+@import url("https://unpkg.com/flickity@2.3.0/dist/flickity.min.css");
+
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+.gallery {
+  background: none;
+  border: none;
+  border-radius: 1rem;
+}
+
+.gallery-cell {
+  width: 80%;
+  max-width: 700px;
+  height: auto;
+  margin-right: 10px;
+  counter-increment: gallery-cell;
+}
+
+.gallery-cell img {
+  border-radius: 1rem;
+}
+
+/* fullscreen */
+.carousel.is-fullscreen .carousel-cell {
+  height: 100%;
+}
