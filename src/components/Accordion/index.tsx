@@ -1,5 +1,3 @@
-import React, { ReactNode } from "react";
-
 import { Disclosure } from "@headlessui/react";
 import { CaretCircleDown } from "phosphor-react";
 import { SpecificationProps } from "../../types/accordion";

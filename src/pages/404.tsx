@@ -11,7 +11,7 @@ const errorPage: NextPage = () => {
       <p className="text-lg font-sans text-black">Página não encontrada</p>
 
       <Link href="/">
-        <div className="p-4 rounded-md bg-secondary w-54 mt-8 text-white-default font-bold shadow-slate-800">
+        <div className="p-4 rounded-md bg-secondary w-54 mt-8 text-white-default font-bold shadow-slate-800 cursor-pointer">
           Voltar à página inicial
         </div>
       </Link>

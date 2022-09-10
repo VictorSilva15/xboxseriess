@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-css-tags */
+/* eslint-disable @next/next/no-img-element */
 import type { NextPage } from "next";
 
 import Head from "next/head";
@@ -12,6 +14,7 @@ import { SpecificationProps } from "../types/accordion";
 
 import Card from "../components/Card";
 import Accordion from "../components/Accordion";
+import Carousel from "../components/Carousel";
 
 const Home: NextPage = () => {
   const specifications: SpecificationProps[] = [
@@ -127,6 +130,88 @@ const Home: NextPage = () => {
     },
   ];
 
+  const imageGames = [
+    {
+      url: "/assets/images/assassinsCreedSyndicate.png",
+      label: "Assassin's Creed Syndicate",
+    },
+    {
+      url: "/assets/images/battlefield2042.png",
+      label: "Battlefield 2042",
+    },
+    {
+      url: "/assets/images/dragonBallFighters.png",
+      label: "Dragon ball Fighters",
+    },
+    {
+      url: "/assets/images/fallGuys.png",
+      label: "Fall Guys",
+    },
+    {
+      url: "/assets/images/fortnite.png",
+      label: "Fortnite",
+    },
+    {
+      url: "/assets/images/forzaHorizon5.png",
+      label: "Forza Horizon 5",
+    },
+    {
+      url: "/assets/images/hitman.png",
+      label: "Hitman 3",
+    },
+    {
+      url: "/assets/images/minecraftDungeons.png",
+      label: "minecraft Dungeons",
+    },
+    {
+      url: "/assets/images/ori.png",
+      label: "ori",
+    },
+    {
+      url: "/assets/images/starWars.png",
+      label: "Start Wars",
+    },
+  ];
+
+  const videos = [
+    {
+      url: "https://streamable.com/e/lzluig?loop=0",
+      title: "Forza Horizon 5",
+    },
+    {
+      url: "https://streamable.com/e/9jhb96?loop=0",
+      title: "fall Guys",
+    },
+    {
+      url: "https://streamable.com/e/xcov99?loop=0",
+      title: "Fortnite",
+    },
+    {
+      url: "https://streamable.com/e/8wtqs7?loop=0",
+      title: "Minecraft Dungeons",
+    },
+    {
+      url: "https://streamable.com/e/acqkgc?loop=0",
+      title: "Ori",
+    },
+    {
+      url: "https://streamable.com/e/0fetil?loop=0",
+      title: "Hitman",
+    },
+    {
+      url: "https://streamable.com/e/nwlmgx?loop=0",
+      title: "Dragon Ball fighters",
+    },
+    {
+      url: "https://streamable.com/e/uqcnmt?loop=0",
+      title: "The Crew 2",
+    },
+    {
+      url: "https://streamable.com/e/visxr4?loop=0",
+      title: "Battlefield 4",
+    },
+  ];
+
   return (
     <>
       {/* Head configuration */}
@@ -155,7 +240,7 @@ const Home: NextPage = () => {
             <ul className="mt-10">
               <li className="flex flex-row items-center justify-start gap-2 font">
                 <Plus size={32} color="#47b100" weight="bold" />
-                <p>Controle Sem Fio</p>
+                <p>1 Controle Sem Fio</p>
               </li>
               <li className="flex flex-row items-center justify-start gap-2">
                 <Plus size={32} color="#47b100" weight="bold" />
@@ -172,7 +257,7 @@ const Home: NextPage = () => {
               href="https://api.whatsapp.com/send?phone=5511933725857"
               target="_blank"
             >
-              <div className="flex flex-row gap-2 items-center justify-start w-min rounded-md p-4 bg-secondary text-white font-bold mt-8 mb-6">
+              <div className="flex flex-row gap-2 items-center justify-start w-min rounded-md p-4 bg-secondary text-white font-bold mt-8 mb-6 cursor-pointer">
                 <WhatsappLogo size={32} color="#f0f0f0" weight="regular" />
                 <span>NEGOCIAR</span>
               </div>
@@ -227,10 +312,33 @@ const Home: NextPage = () => {
           <h1 className="text-black font-header text-4xl w-full mb-5">
             Imagens
           </h1>
+
+          <Carousel images={imageGames} />
         </Section>
-        <Section id="videos">
+
+        <Section
+          id="videos"
+          className="w-full h-auto flex flex-row gap-8 flex-wrap"
+        >
           <h1 className="text-black font-header text-4xl w-full">Vídeos</h1>
+
+          {videos.map((video) => {
+            return (
+              <div className="w-full lg:w-[400px]" key={video.title}>
+                <h3 className="font-header texy-black my-4">{video.title}</h3>
+                <div className="w-full h-0 relative pb-[56.250%]">
+                  <iframe
+                    src={video.url}
+                    frameBorder="0"
+                    allowFullScreen
+                    className="w-full h-full absolute top-0 left-0 overflow-hidden"
+                  ></iframe>
+                </div>
+              </div>
+            );
+          })}
         </Section>
+
         <Section id="contact">
           <h1 className="text-black font-header text-4xl w-full">Contatar</h1>
         </Section>
