@@ -18,13 +18,9 @@ const Header: React.FC = () => {
   return (
     <header className="w-full px-6 py-4 h-20 bg-primary flex items-center justify-between fixed top-0 left-0 z-[999]">
       {/* logo */}
-      <Image
-        src="/assets/images/xbox-white-logo.png"
-        alt="xbox white logo"
-        width={145}
-        height={45}
-        className="max-w-xs"
-      />
+      <h1 className="text-white font-header text-2xl lg:text-4xl">
+        Xbos Series S
+      </h1>
 
       {/* Hamburguer button */}
       <button className="lg:hidden" onClick={openMenu}>

@@ -6,17 +6,29 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 
+import { ChangeEventHandler, FormEvent, useState, useRef } from "react";
+
+import emailJs from "@emailjs/browser";
+
 import { Header } from "../components/Header";
 import { Section } from "../components/Section";
-import { Plus, WhatsappLogo } from "phosphor-react";
+import { Plus, WhatsappLogo, Envelope, LinkedinLogo } from "phosphor-react";
 
 import { SpecificationProps } from "../types/accordion";
+import { FormInputProps, InputTypes } from "../types/formInputProps";
 
 import Card from "../components/Card";
 import Accordion from "../components/Accordion";
 import Carousel from "../components/Carousel";
+import Form from "../components/Form";
 
 const Home: NextPage = () => {
+  const [contactInputFields, setContactInputs] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
   const specifications: SpecificationProps[] = [
     // Processador
     {
@@ -212,6 +224,61 @@ const Home: NextPage = () => {
     },
   ];
 
+  const contactInputs: FormInputProps[] = [
+    {
+      label: "Nome",
+      name: "name",
+      type: InputTypes.text,
+      value: contactInputFields.name,
+      required: true,
+      id: "name",
+    },
+
+    {
+      label: "E-mail",
+      name: "email",
+      type: InputTypes.text,
+      value: contactInputFields.email,
+      required: true,
+      id: "email",
+    },
+
+    {
+      label: "Interesse",
+      name: "message",
+      type: InputTypes.textarea,
+      value: contactInputFields.message,
+      required: true,
+      id: "message",
+    },
+  ];
+
+  const handleContactSubmit = async (event: any) => {
+    event.preventDefault();
+
+    try {
+      const result = await emailJs.sendForm(
+        process.env.NEXT_PUBLIC_SERVICE_ID as string,
+        process.env.NEXT_PUBLIC_TEMPLATE_ID as string,
+        event.target,
+        process.env.NEXT_PUBLIC_PUBLIC_KEY as string
+      );
+
+      console.log(result);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleContactInputChanges: ChangeEventHandler<
+    HTMLInputElement | HTMLTextAreaElement
+  > = (event) => {
+    setContactInputs({
+      ...contactInputFields,
+      [event.target.name]: event.target.value,
+    });
+  };
+
   return (
     <>
       {/* Head configuration */}
@@ -318,7 +385,7 @@ const Home: NextPage = () => {
 
         <Section
           id="videos"
-          className="w-full h-auto flex flex-row gap-8 flex-wrap"
+          className="w-full h-auto flex flex-row gap-8 flex-wrap align-top justify-center"
         >
           <h1 className="text-black font-header text-4xl w-full">Vídeos</h1>
 
@@ -339,8 +406,50 @@ const Home: NextPage = () => {
           })}
         </Section>
 
-        <Section id="contact">
+        <Section
+          id="contact"
+          className="w-full h-auto flex flex-row gap-4 flex-wrap"
+        >
           <h1 className="text-black font-header text-4xl w-full">Contatar</h1>
+
+          <Form
+            inputs={contactInputs}
+            handleOnSubmit={handleContactSubmit}
+            handleInputchanges={handleContactInputChanges}
+          />
+
+          <ul className="w-full flex flex-row align-center justify-center gap-8 mt-8">
+            <li
+              className="cursor-pointer hover:translate-y-[-3px] transition-all duration-[0.3s]"
+              title="E-mail: victor470hugo@gmail.com"
+            >
+              <Link href="mailto:victor470hugo@gmail.com" target="_blank">
+                <Envelope size={44} color="#d01111" weight="bold" />
+              </Link>
+            </li>
+            <li
+              className="cursor-pointer hover:translate-y-[-3px] transition-all duration-[0.3s]"
+              title="Whatsapp: +55 (11) 93372-5857"
+            >
+              <Link
+                href="https://api.whatsapp.com/send?phone=5511933725857"
+                target="_blank"
+              >
+                <WhatsappLogo size={44} color="#47B100" weight="bold" />
+              </Link>
+            </li>
+            <li
+              className="cursor-pointer hover:translate-y-[-3px] transition-all duration-[0.3s]"
+              title="LinkedIn: victorsilvadev"
+            >
+              <Link
+                href="https://www.linkedin.com/in/victorsilvadev/"
+                target="_blank"
+              >
+                <LinkedinLogo size={44} color="#11a9d0" weight="bold" />
+              </Link>
+            </li>
+          </ul>
         </Section>
       </main>
     </>
