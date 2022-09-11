@@ -9,7 +9,7 @@ interface AccordionProps {
 export default function Accordion({ items }: AccordionProps) {
   return (
     <div className="w-full px-4 pt-6">
-      <div className="mx-auto w-full max-w-md rounded-2xl bg-white p-2">
+      <div className="mx-auto w-full max-w-[700px] rounded-2xl bg-white p-2 md:text-xl">
         {items.map((item) => {
           return (
             <Disclosure key={item.title}>
