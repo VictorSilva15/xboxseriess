@@ -17,6 +17,9 @@ import { Plus, WhatsappLogo, Envelope, LinkedinLogo } from "phosphor-react";
 import { SpecificationProps } from "../types/accordion";
 import { FormInputProps, InputTypes } from "../types/formInputProps";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import Card from "../components/Card";
 import Accordion from "../components/Accordion";
 import Carousel from "../components/Carousel";
@@ -28,6 +31,10 @@ const Home: NextPage = () => {
     email: "",
     message: "",
   });
+
+  const Success = () => toast.success("Mensagem Enviada!");
+  const Error = () =>
+    toast.error("Um Erro ocorreu. Tente Novamente mais tarde");
 
   const specifications: SpecificationProps[] = [
     // Processador
@@ -264,9 +271,15 @@ const Home: NextPage = () => {
         process.env.NEXT_PUBLIC_PUBLIC_KEY as string
       );
 
-      console.log(result);
+      Success();
+
+      setContactInputs({
+        name: "",
+        email: "",
+        message: "",
+      });
     } catch (error) {
-      console.error(error);
+      Error();
     }
   };
 
@@ -281,6 +294,9 @@ const Home: NextPage = () => {
 
   return (
     <>
+      {/* Notifier */}
+      <ToastContainer position="top-right" theme="light" />
+
       {/* Head configuration */}
       <Head>
         <title>Xbox Series S</title>
@@ -293,19 +309,19 @@ const Home: NextPage = () => {
       {/* Content */}
       <main className="min-h-screen">
         <Section
-          className="mt-20 flex flex-col-reverse gap-10 pr-0"
+          className="mt-20 flex flex-col-reverse gap-10 pr-0 md:flex-row md:align-center"
           id="initial"
         >
           {/* Informations */}
-          <div className="w-full relative px-1">
+          <div className="w-full relative px-1 md:p-6 md:flex md:flex-col md:align-start md:justify-evenly">
             {/* Console Name */}
-            <h1 className="text-black font-header text-6xl w-full">
+            <h1 className="text-black font-header text-5xl lg:text-6xl w-full">
               1 Console Xbox Series S
             </h1>
 
             {/* Technologies */}
-            <ul className="mt-10">
-              <li className="flex flex-row items-center justify-start gap-2 font">
+            <ul className="mt-10 md:text-xl">
+              <li className="flex flex-row items-center justify-start gap-2">
                 <Plus size={32} color="#47b100" weight="bold" />
                 <p>1 Controle Sem Fio</p>
               </li>
@@ -334,16 +350,17 @@ const Home: NextPage = () => {
           </div>
 
           {/* Xbox Series S Image */}
-          <div className="w-full relative -top-5 right-0">
+          <div className="w-full relative -top-5 right-0 md:-top-10">
             <div className="w-full text-center relative top-20 z-50">
               <Image
                 src="/assets/images/xboxseriess.png"
                 alt="Console Xbox Series S"
                 width={300}
                 height={400}
+                priority
               />
             </div>
-            <div className="w-full h-3xl bg-white rounded-tl-3xl rounded-bl-3xl pb-5 pt-36 relative top-[-40px]">
+            <div className="w-full h-3xl bg-white rounded-tl-3xl rounded-bl-3xl pb-5 pt-36 relative top-[-40px] md:h-xl ">
               <h2 className="text-secondary font-header text-6xl w-full text-center">
                 R$1950,00
               </h2>
@@ -360,7 +377,7 @@ const Home: NextPage = () => {
             <h1 className="text-black font-header text-4xl w-full">
               Especificações
             </h1>
-            <div className="relative -left-10">
+            <div className="relative -left-10 md:hidden">
               <Image
                 src="/assets/images/xboxseriess-half-controller.png"
                 alt="Xbox Series S Controller"
@@ -459,6 +476,7 @@ const Home: NextPage = () => {
 export async function getStaticProps() {
   return {
     props: {},
+    revalidate: 60 * 60 * 24, // 1h
   };
 }
 
