@@ -6,7 +6,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 
-import { ChangeEventHandler, FormEvent, useState, useRef } from "react";
+import { ChangeEventHandler, useEffect, useState } from "react";
 
 import emailJs from "@emailjs/browser";
 
@@ -25,11 +25,19 @@ import Accordion from "../components/Accordion";
 import Carousel from "../components/Carousel";
 import Form from "../components/Form";
 
+import "aos/dist/aos.css";
+
 const Home: NextPage = () => {
   const [contactInputFields, setContactInputs] = useState({
     name: "",
     email: "",
     message: "",
+  });
+
+  useEffect(() => {
+    import("aos").then(({ default: AOS }) => {
+      AOS.init();
+    });
   });
 
   const Success = () => toast.success("Mensagem Enviada!");
@@ -299,7 +307,7 @@ const Home: NextPage = () => {
 
       {/* Head configuration */}
       <Head>
-        <title>Xbox Series S</title>
+        <title>Xbox Series S à Venda</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
 
@@ -408,12 +416,15 @@ const Home: NextPage = () => {
 
           {videos.map((video) => {
             return (
-              <div className="w-full lg:w-[400px]" key={video.title}>
+              <div
+                className="w-full lg:w-[400px]"
+                key={video.title}
+                data-aos="fade-down"
+              >
                 <h3 className="font-header texy-black my-4">{video.title}</h3>
                 <div className="w-full h-0 relative pb-[56.250%]">
                   <iframe
                     src={video.url}
-                    frameBorder="0"
                     allowFullScreen
                     className="w-full h-full absolute top-0 left-0 overflow-hidden"
                   ></iframe>
